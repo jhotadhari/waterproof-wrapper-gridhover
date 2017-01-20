@@ -1,0 +1,325 @@
+/*
+	grunt.concat_in_order.declare('wpwqgh_wrapper_gridhover');
+	grunt.concat_in_order.require('init');
+*/
+
+@import "susy";
+
+$susy: (
+    columns: 12,  
+    // debug: (
+    //     image: show,    
+    //     output: overlay,
+    //     toggle: top right
+    // )
+);
+
+
+$_color_text_light: #fff;
+$_color_text_dark: #000;
+
+$_color_bg_light: #e6e6e6;
+$_color_bg_dark: #000;
+$_color_bg_color: rgb( 219, 127, 8);
+
+
+
+
+@for $i from 1 through 10 {
+  $gh_layout: layout(95% $i 1/8);  
+  @include with-layout($gh_layout) {
+    .wpwq-query-wrapper.gridhover.per-row-#{$i} {
+      @include container($gh_layout);
+      .view {
+        @include span(1);
+        padding-top: span(1);
+        margin-top: gutters();
+        &.last{
+          @include span(1 last);
+        }
+      }
+      @include breakpoint($device__mobile) {
+        .view {
+          @if($i == 1) {
+            @include span($i);
+            padding-top: span($i last);
+          } @else {
+            @include span($i/2);
+            padding-top: span($i/2);
+            &:nth-child(2n) {
+              @include span($i/2 last);
+            }
+          }          
+        }
+      }
+    }
+  }
+}
+  
+
+.wpwq-query-wrapper.gridhover {
+  margin: 1em auto;
+  
+  .view {
+    overflow: visible;
+    height: 0;
+    position: relative;
+
+    text-align: center;
+    cursor: default;
+    background: transparentize( $_color_bg_light, 0.5 ) no-repeat center center;
+    
+    .view-inner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      overflow: hidden;
+      @include transition(all 300ms ease-in-out);
+
+      img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      
+      .mask{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        background-color: transparentize( $_color_bg_color, 0.3); 
+      }
+
+      h2 {
+          color: $_color_text_light;
+          text-align: center;
+          position: relative;
+          font-size: 17px;
+          padding: 4%;
+          background: transparentize( $_color_bg_dark, 0.2);
+          margin: 8% 0 0
+      }
+
+      
+      p {
+          font-size: 13px;
+          position: relative;
+          color: $_color_text_light;
+          padding: 2% 4% 4%;
+          text-align: center
+      }
+      
+    }
+      
+    &.view-1 .view-inner{
+      img { 
+        @include transition(all 200ms ease-in-out);
+      }
+      .mask {
+        opacity: 0;
+        @include transition(all 400ms ease-in-out);
+      }
+      h2 {
+        @include transform ( translateY( -20% ) );
+        opacity: 0;
+        @include transition(all 200ms ease-in-out);
+      }
+      p { 
+        @include transform ( translateY( 20% ) );
+        opacity: 0;
+        @include transition(all 200ms ease-in-out);
+      }
+      &:hover {
+        img { 
+          @include transform ( scale(1.1) );
+        } 
+        .mask { 
+          opacity: 1;
+        }
+        h2,
+        p {
+            opacity: 1;
+            @include transform ( translateY( 0% ) );
+        }
+        p {
+            @include transition-delay(0.1s);
+        }
+      }
+    }
+    
+          
+    &.view-2 .view-inner{    
+      img { 	
+        @include transition(all 200ms ease-in-out);
+      }
+      .mask { 
+        padding: 15%;
+        opacity: 0;
+        @include transform ( translate( 100%, 100% ) rotate( 45deg ) );
+        @include transition(all 300ms ease-in-out);
+      }
+      h2 {
+        border-bottom: 1px solid transparentize( $_color_bg_dark, 0.7);
+        background: transparent;
+        margin: 5% 10% 0px 10%;
+        @include transform ( translate(100%, -150%) );
+        @include transition(all 200ms ease-in-out);
+      }
+      p { 
+        @include transform ( translate(-150%, 100%) );
+        @include transition(all 200ms ease-in-out);
+      }
+      a.info { 
+        @include transform ( translate(0px, 100px) );
+        @include transition(all 200ms 100ms ease-in-out);
+      }
+      
+      &:hover{
+        img {
+          @include transform ( scale(1.1) );
+
+          @include transition-delay(0.1s);
+        }
+        .mask { 
+          opacity:1; 
+          @include transform (translate( 0%, 0% ) rotate(45deg) );
+          @include transform (scale(1.5) );
+        }							  
+        h2 { 
+          @include transform ( translate(0px,0px) );
+          @include transition-delay(0.2s);
+        }
+        p { 
+          @include transform ( translate(0px,0px) );
+          @include transition-delay(0.3s);
+        }
+      }
+      
+    }       
+  
+    
+    &.view-3 .view-inner{
+
+      img { 	
+        @include transition(all 200ms ease-in-out);
+      }
+      .mask { 
+        opacity: 0;
+        @include transform ( translate(200%, -20%) rotate(180deg) );
+        @include transition(all 200ms 400ms ease-in-out);
+      }
+      h2{
+        @include transform ( translateY(-200%) );
+        @include transition(all 200ms ease-in-out);
+      }
+      p { 
+        @include transform ( translateX(100%) rotate(90deg) );
+        @include transition(all 200ms ease-in-out);
+      }
+      
+      &:hover {
+        .mask { 
+          opacity:1; 
+          @include transition-delay(0s);
+          @include transform ( translate(0%,0%) );
+        }
+        h2 { 
+          @include transform ( translateY(0%) );
+          @include transition-delay(0.4s);
+        }
+        p	{ 
+          @include transform ( translateX(0%) rotate(0deg) );
+          @include transition-delay(0.3s);
+        }
+      }
+      
+    
+    }
+
+    &.view-4 .view-inner{ 
+          
+      img { 
+        @include transition(all 400ms ease-in-out);
+        opacity: 1;
+      }
+      .mask { 
+        opacity: 0;
+        @include transform ( scale(0) rotate(-180deg) );
+        @include transition(all 400ms ease-in-out);
+      }
+      h2{
+        opacity: 0;
+        border-bottom: 1px solid transparentize( $_color_bg_dark, 0.7);
+        background: transparent;
+        margin: 5% 10% 0px 10%;
+        @include transition(all 500ms ease-in-out);
+      }
+      p { 
+        opacity: 0;
+        @include transition(all 500ms ease-in-out);
+      }
+        
+      &:hover {
+        .mask { 
+          opacity: 1; 
+          @include transform ( scale(1) rotate(0deg) );
+          @include transition-delay(0.2s);
+        }								  
+        img 	  { 
+          opacity: 0;
+
+          @include transform ( scale(0) );
+          @include transition-delay(0s);
+        }						
+        h2,
+        p {
+          opacity: 1;
+          @include transition-delay(0.5s);
+        }
+      }
+    
+    } 
+
+    &.view-5 .view-inner{
+      
+      img {
+        @include transition(all 400ms ease-in-out);
+      }
+      .mask { 
+        opacity: 1;
+
+        @include transform ( translateX(-100%) );
+        @include transition(all 400ms ease-in-out);
+      }
+      p {
+        opacity: 0;
+        @include transition(all 100ms ease-in-out);
+      }
+      
+      &:hover {
+        .mask { 
+          @include transform ( translateX(0%) );
+        }						
+        img { 
+          @include transform ( translateX(100%) );
+        }
+        p {
+          opacity: 1;
+          @include transition-delay(0.3s);
+        }
+      }
+      
+    }
+
+
+  }
+}

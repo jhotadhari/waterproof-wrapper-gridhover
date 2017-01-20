@@ -1,0 +1,14 @@
+{
+	"name": "waterproof/waterproof-wrapper-gridhover",
+	"description": "???",
+	"repositories":
+		[]
+		,
+	"require":
+		{"composer/installers":"*"}
+	,
+	"extra": {
+		"installer-paths": 
+			{}
+	}
+}
