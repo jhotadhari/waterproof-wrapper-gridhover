@@ -18,8 +18,6 @@ class Wpwq_wrapper_gridhover extends Wpwq_wrapper {
 
 		$this->set_name( 'gridhover' );
 		
-		$this->parse_data();
-		
 		add_action( 'wp_footer', array( $this, 'styles_scripts_frontend' ), 1 );
 
 		$this->set_wrapper_open();
@@ -62,49 +60,17 @@ class Wpwq_wrapper_gridhover extends Wpwq_wrapper {
 		$this->wrapper_close = '</div>';
 	}
 	
-	protected function parse_data() {
-		/*
-		global $wpwqgh_localize;
-		global $wpwqgh_defaults;
-
-		$acc_options = wpwq_get_option( $this->type_name . '_' . 'acc_options', $wpwqgh_defaults->get_default( 'acc_options' ));
-		$jsonStr = strip_tags(str_replace( ' ', '', $acc_options));
-		$acc_options = ( null !== json_decode( $jsonStr, true ) ? json_decode( $jsonStr, true ) : array() );
-		
-		$options = array(
-			'global' => array(
-				'acc_options' => $acc_options
-			)
-		);
-		
-		if ( array_key_exists('unique', $this->args ) && strlen($this->args['unique']) ) {
-			$unique = wpwq_slugify($this->args['unique']);
-			
-			$options[$unique]['acc_options'] = ( array_key_exists('acc_options', $this->args) ? $this->args['acc_options'] : array() );
-		}
-		
-		$wpwqgh_localize->add_datas( $options );
-		*/
-
-	}
 	
 	public function styles_scripts_frontend() {
 		
 		$enqueue_jscss = wpwq_get_option( $this->type_name . '_' . 'enqueue_jscss', array(
-			// 'jquery_ui_accordion_js',
-			// 'jquery_ui_css',
 			'wpwqgh_style'
 		));
-		/*
-		if ( in_array( 'jquery_ui_css', $enqueue_jscss )){	
-			wp_enqueue_style( 'jquery_ui_css', plugin_dir_url( __FILE__ ) . 'css/jquery-ui.min.css' );
-		}
-		*/
+		
 		if ( in_array( 'wpwqgh_style', $enqueue_jscss )){	
 			wp_enqueue_style( 'wpwqgh_style', plugin_dir_url( __FILE__ ) . 'css/style.css' );
 		}
 		
-
 		
 		if ( get_template_directory_uri() != get_stylesheet_directory_uri() ){
 			// childtheme exists
@@ -124,21 +90,8 @@ class Wpwq_wrapper_gridhover extends Wpwq_wrapper {
 
 			}
 		}
-		/*
-		if ( in_array( 'jquery_ui_accordion_js', $enqueue_jscss )){	
-			wp_enqueue_script('jquery-ui-accordion');
-		}
-		*/
-		wp_register_script( 'wpwqgh_script', plugin_dir_url( __FILE__ ) . 'js/script.min.js', array('jquery','jquery-ui-accordion') , false , true);
-	}	
-	public function scripts_frontend_print() {
-		/*
-		global $wpwqgh_localize;
 		
-		$parse_data = $wpwqgh_localize->get_datas();
-		wp_localize_script( 'wpwqgh_script', 'Wpwq_wrapper_' . $this->type_name, $parse_data );
-		wp_print_scripts('wpwqgh_script');
-		*/
+		wp_register_script( 'wpwqgh_script', plugin_dir_url( __FILE__ ) . 'js/script.min.js', array('jquery','jquery-ui-accordion') , false , true);
 	}	
 	
 	

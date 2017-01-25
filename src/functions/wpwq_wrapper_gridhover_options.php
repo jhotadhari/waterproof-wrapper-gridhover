@@ -8,8 +8,6 @@
 function wpwqgh_add_defaults(){
 	global $wpwqgh_defaults;
 	
-	// $wpwqgh_defaults->add_default( array(
-	// ));
 }
 add_action( 'admin_init', 'wpwqgh_add_defaults', 2 );
 add_action( 'init', 'wpwqgh_add_defaults', 2 );
@@ -17,7 +15,6 @@ add_action( 'init', 'wpwqgh_add_defaults', 2 );
 function wpwqgh_options_cb( $cmb ) {
 	global $wpwqgh_defaults;
 	global $wpwq_wrapper_types;
-	
 	
 	// define name
 	$type_name = 'gridhover';
@@ -27,38 +24,39 @@ function wpwqgh_options_cb( $cmb ) {
 	$classes = 'wpwq-wrapper wrapper-gridhover';
 
 	$cmb->add_field( array(
-		'name' => __('Gridhover Wrapper', 'wpwq-jquiacc'),
+		'name' => __('Gridhover Wrapper', 'wpwq-gh'),
 		'id' => $type_name . '_' . 'title',
-		'desc' => '<span class="font-initial">' . __( $type_desc['desc'] , 'wpwq-jquiacc') . '</span>',
+		'desc' => '<span class="font-initial">' . __( $type_desc['desc'] , 'wpwq-gh') . '</span>',
 		'type'    => 'title',
 		'classes' => $classes,
 	) );
-	/*
+	
 	$cmb->add_field( array(
-		'name' => '[default] ' . __('Accordion Options', 'wpwq-jquiacc'),
-		'desc' => __('A JSON formatted array that addresses the <a title="jQueryUI accordion options" target="_blank" href="http://api.jqueryui.com/accordion/#options">jQueryUI accordion options</a>.<br>
-			Just leave it blank to get the default values ... and save them!','wpwq-jquiacc'),
-		'id' => $type_name . '_' . 'acc_options',
-		'default' => $wpwqgh_defaults->get_default( 'acc_options' ),
-		'type' => 'textarea',
+		'name' => __('Default Images', 'wpwq-gh'),
+		'id' => $type_name . '_' . 'default_imgs',
+		'desc' => __( '???' , 'wpwq-gh'),
+		'type'    => 'file_list',
+		'options' => array(
+			'url' => false,
+			'add_upload_file_text' => 'Add Image',
+		),
+		'query_args'   => array(
+			'type' => 'image',
+		),
 		'classes' => $classes,
 	) );
-	*/
+	
 	$cmb->add_field( array(
 		'name'    => 'Enqueue Frontend styles and scripts',
-		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-jquiacc') . '<br>'
-			. '<span class="font-initial">' . __('If your Theme or Childtheme has a folder "wpwq" with file "wpwqgh_style.css" it will be enqued at last.','wpwq-jquiacc') . '</span>'
+		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-gh') . '<br>'
+			. '<span class="font-initial">' . __('If your Theme or Childtheme has a folder "wpwq" with file "wpwqgh_style.css" it will be enqued at last.','wpwq-gh') . '</span>'
 		,
 		'id'      => $type_name . '_' . 'enqueue_jscss',
 		'type'    => 'multicheck',
 		'default' => array(
-			// 'jquery_ui_accordion_js',
-			// 'jquery_ui_css',
 			'wpwqgh_style'
 		),
 		'options' => array(
-			// 'jquery_ui_accordion_js' => 'Plugin script jquery-ui-accordion (the wp included)',
-			// 'jquery_ui_css' => 'Plugin style jquery ui',
 			'wpwqgh_style' => 'Plugin style wpwqgh_style'
 		),
 		'classes' => $classes,

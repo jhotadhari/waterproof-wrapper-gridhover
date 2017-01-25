@@ -97,16 +97,16 @@ module.exports = function(grunt){
 						'local_sync:<%= local_sync.wp_install %>'
 					]
 				},
-				copy_fonts: {
-					files: [
-						'<%= pkg.dirs.src %>/fonts/**/*',
-						'<%= pattern.global_exclude %>',
-					],
-					tasks: [
-						'copy:fonts',
-						'local_sync:<%= local_sync.wp_install %>'
-					]
-				},
+				// copy_fonts: {
+				// 	files: [
+				// 		'<%= pkg.dirs.src %>/fonts/**/*',
+				// 		'<%= pattern.global_exclude %>',
+				// 	],
+				// 	tasks: [
+				// 		'copy:fonts',
+				// 		'local_sync:<%= local_sync.wp_install %>'
+				// 	]
+				// },
 				copy_readme: {
 					files: [
 						'<%= pkg.dirs.src %>/readme/**/*',
@@ -169,6 +169,7 @@ module.exports = function(grunt){
 					],
 					tasks: [
 						'copy:css',
+						'local_sync:<%= local_sync.wp_install %>'
 					]
 				},		
 				
@@ -344,19 +345,19 @@ module.exports = function(grunt){
 			},	
 			
 			
-			//	fonts to ...
-			fonts: {		
-				expand: true,
-				cwd: '<%= pkg.dirs.src %>/fonts/',
-				src: ['**/*', '<%= pattern.global_exclude %>'],
-				dest: '<%= test_path %>/fonts/'	
-			},
-			fonts_dist: {		
-				expand: true,
-				cwd: '<%= pkg.dirs.src %>/fonts/',
-				src: ['**/*', '<%= pattern.global_exclude %>'],
-				dest: '<%= dist_path %>/fonts/'	
-			},
+			// //	fonts to ...
+			// fonts: {		
+			// 	expand: true,
+			// 	cwd: '<%= pkg.dirs.src %>/fonts/',
+			// 	src: ['**/*', '<%= pattern.global_exclude %>'],
+			// 	dest: '<%= test_path %>/fonts/'	
+			// },
+			// fonts_dist: {		
+			// 	expand: true,
+			// 	cwd: '<%= pkg.dirs.src %>/fonts/',
+			// 	src: ['**/*', '<%= pattern.global_exclude %>'],
+			// 	dest: '<%= dist_path %>/fonts/'	
+			// },
 
 			//	css to ...
 			css: {		
@@ -513,15 +514,15 @@ module.exports = function(grunt){
 		concat: {
 			prepend_to__readme_hist: {
 				options: {
-					banner: 'version <%= pkg.version %>\n<%= global["commit_msg"] %>\n\n'
+					banner: '= <%= pkg.version %> =\n<%= global["commit_msg"] %>\n',
 				},
 				src: 'src/readme/dont_touch/_readme_hist.txt',
 				dest: 'src/readme/dont_touch/_readme_hist.txt'
 			},
 			readme_and_hist: {
 				options: {
-					banner: '<%= pkg.fullName %>\nversion <%= pkg.version %>\n\n',
-					separator: '\n\nRelease History\n\n'
+					banner: '=== <%= pkg.fullName %> ===\nTags: <%= pkg.tags %>\nDonate link: <%= pkg.donateLink %>\nTested up to: <%= pkg.wpVersionTested %>\nStable tag: <%= pkg.wpStableTag%>\nLicense: <%= pkg.license %>\nLicense URI: <%= pkg.licenseUri %>\n\n<%= pkg.description %>!\n',
+					separator: '\n\n== Changelog ==\n\n'
 				},
 				src: [
 					'src/readme/readme.txt',
@@ -626,7 +627,7 @@ module.exports = function(grunt){
 						'copy:root_files',
 						'copy:vendor',
 						'copy:images',
-						'copy:fonts',
+						// 'copy:fonts',
 						'copy:readme',
 						'copy:css',
 						'copy:js',
@@ -897,7 +898,7 @@ module.exports = function(grunt){
 						'copy:root_files_dist',	
 						'copy:vendor_dist',
 						'copy:images_dist',
-						'copy:fonts_dist',
+						// 'copy:fonts_dist',
 						'copy:readme_dist',
 						'copy:css_dist',
 						'copy:js_dist',
