@@ -52,7 +52,7 @@ class Wpwq_wrapper_gridhover extends Wpwq_wrapper {
 		$per_row = $per_row ? $per_row : min( $this->args['count_total'], '4' );
 		$this->args['per_row'] = $per_row;
 		
-		$unique = ( array_key_exists('unique', $this->args ) && strlen($this->args['unique']) > 0 ? ' ' . wpwq_slugify($this->args['unique']) . '-unique' : '' );
+		$unique = ( array_key_exists('unique', $this->args ) && strlen($this->args['unique']) > 0 ? ' ' . $this->args['unique'] . '-unique' : '' );
 		$this->wrapper_open = '<div class="wpwq-query-wrapper clearfix gridhover' . $unique . ' per-row-' . $per_row . '">';
 
 	}

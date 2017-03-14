@@ -25,9 +25,8 @@ class Wpwq_wrapper_gridhover_single extends Wpwq_wrapper_single {
 
 
 		$styles = range(1, 5);
-		if ( ! is_numeric($style) ) {
-			$styles = array_intersect( $styles, explode(',',$style) );
-		}		
+		
+		$styles = array_intersect( $styles, explode(',',$style) );
 		
 		switch ($style_order) {
 			case 'asc':
@@ -44,20 +43,28 @@ class Wpwq_wrapper_gridhover_single extends Wpwq_wrapper_single {
 				$style = $styles[array_rand( $styles )];
 		}
 		
-		
-		$last = $this->args_single['single_count'] % $this->args['per_row'] == 0 ? ' last' : '' ;
 		$r = '';
 		
-		$r .= '<div class="view view-' . $style . $last . '">';
+		$item_classes = array();
+		$item_classes[] = 'wpwq-query-wrapper-item';	// selector for js
+		$item_classes[] = 'post-' . $query_single_obj['id'];	// selector for js
+		$item_classes[] = 'view';
+		$item_classes[] = 'view-' . $style;
+		$item_classes[] = $this->args_single['single_count'] % $this->args['per_row'] == 0 ? 'last' : '' ;
+		$item_classes = array_diff($item_classes, array(''));
+		$item_classes_attr = count($item_classes) > 0 ? ' class="' . implode( ' ', $item_classes ). '"' : '';
+		
+		$r .= '<div ' . $item_classes_attr . '>';
 		
 			$r .= $is_linked ? '<a href="' . $query_single_obj['link'] . '" class="info">' : '' ;
-			$r .= '<div class="view-inner">';
+			$r .= '<div class="view-inner hovertrigger">';		// hovertrigger: selector for js
 			
 				if ( strlen($query_single_obj['image_url']) > 0) {
 					$image_url = $query_single_obj['image_url'];
-
 				} else if ( wpwq_get_option('gridhover_default_img') != null ) {
 					$image_url = wp_get_attachment_image_src( array_rand( wpwq_get_option('gridhover_default_imgs')), 'thumbnail' )[0];
+				} else {
+					$image_url = '#';	// ???
 				}
 				
 				$r .= '<img src="' . $image_url . '" />';

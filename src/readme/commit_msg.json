@@ -1,3 +1,5 @@
 {
-  "test": "test"
+  "1": "bug fix: style attribute didn't accept a single numeric value;",
+  "2": "bug fix: text domain was not loaded;"
+  "3": "added hover interaction with menu;"
 }

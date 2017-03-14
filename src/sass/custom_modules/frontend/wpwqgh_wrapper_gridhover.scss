@@ -138,7 +138,7 @@ $_color_bg_color: rgb( 219, 127, 8);
         opacity: 0;
         @include transition(all 200ms ease-in-out);
       }
-      &:hover {
+      &.hover, &:hover {
         img { 
           @include transform ( scale(1.1) );
         } 
@@ -183,7 +183,7 @@ $_color_bg_color: rgb( 219, 127, 8);
         @include transition(all 200ms 100ms ease-in-out);
       }
       
-      &:hover{
+      &.hover, &:hover {
         img {
           @include transform ( scale(1.1) );
 
@@ -226,7 +226,7 @@ $_color_bg_color: rgb( 219, 127, 8);
         @include transition(all 200ms ease-in-out);
       }
       
-      &:hover {
+      &.hover, &:hover {
         .mask { 
           opacity:1; 
           @include transition-delay(0s);
@@ -268,7 +268,7 @@ $_color_bg_color: rgb( 219, 127, 8);
         @include transition(all 500ms ease-in-out);
       }
         
-      &:hover {
+      &.hover, &:hover {
         .mask { 
           opacity: 1; 
           @include transform ( scale(1) rotate(0deg) );
@@ -305,7 +305,7 @@ $_color_bg_color: rgb( 219, 127, 8);
         @include transition(all 100ms ease-in-out);
       }
       
-      &:hover {
+      &.hover, &:hover {
         .mask { 
           @include transform ( translateX(0%) );
         }						

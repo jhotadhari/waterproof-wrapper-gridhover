@@ -48,8 +48,8 @@ function wpwqgh_options_cb( $cmb ) {
 	
 	$cmb->add_field( array(
 		'name'    => 'Enqueue Frontend styles and scripts',
-		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-gh') . '<br>'
-			. '<span class="font-initial">' . __('If your Theme or Childtheme has a folder "wpwq" with file "wpwqgh_style.css" it will be enqued at last.','wpwq-gh') . '</span>'
+		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-jquiacc') . '<br>'
+			. '<span class="font-initial">' . sprintf(__('If your Theme or Childtheme has a folder "%s" with file "%s" it will be enqueued at last.','wpwq-gh'), 'wpwq', 'wpwqgh_style.css') . '</span>'
 		,
 		'id'      => $type_name . '_' . 'enqueue_jscss',
 		'type'    => 'multicheck',
