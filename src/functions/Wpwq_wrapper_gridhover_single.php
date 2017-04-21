@@ -55,13 +55,14 @@ class Wpwq_wrapper_gridhover_single extends Wpwq_wrapper_single {
 		$item_classes_attr = count($item_classes) > 0 ? ' class="' . implode( ' ', $item_classes ). '"' : '';
 		
 		$r .= '<div ' . $item_classes_attr . '>';
-		
-			$r .= $is_linked ? '<a href="' . $query_single_obj['link'] . '" class="info">' : '' ;
+
+			$target = apply_filters('wpwq_single_obj_link_target', '', $query_single_obj['link']);
+			$r .= $is_linked ? '<a href="' . $query_single_obj['link'] . '" class="info"' . $target . '>' : '' ;
 			$r .= '<div class="view-inner hovertrigger">';		// hovertrigger: selector for js
 			
 				if ( strlen($query_single_obj['image_url']) > 0) {
 					$image_url = $query_single_obj['image_url'];
-				} else if ( wpwq_get_option('gridhover_default_img') != null ) {
+				} elseif ( !empty(wpwq_get_option('gridhover_default_imgs')) ) {
 					$image_url = wp_get_attachment_image_src( array_rand( wpwq_get_option('gridhover_default_imgs')), 'thumbnail' )[0];
 				} else {
 					$image_url = '#';	// ???
