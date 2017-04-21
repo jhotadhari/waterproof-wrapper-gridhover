@@ -3,6 +3,10 @@
 	grunt.concat_in_order.declare('init');
 */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 // load_plugin_textdomain
 function wpwqgh_load_textdomain(){
@@ -10,10 +14,10 @@ function wpwqgh_load_textdomain(){
 	load_plugin_textdomain(
 		'wpwq-gh',
 		false,
-		dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
 }
-add_action( 'plugins_loaded', 'wpwqgh_load_textdomain' );
+add_action( 'init', 'wpwqgh_load_textdomain' );
 
 
 ?>
@@ -119,8 +123,8 @@ function wpwqgh_options_cb( $cmb ) {
 	
 	$cmb->add_field( array(
 		'name'    => 'Enqueue Frontend styles and scripts',
-		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-gh') . '<br>'
-			. '<span class="font-initial">' . __('If your Theme or Childtheme has a folder "wpwq" with file "wpwqgh_style.css" it will be enqued at last.','wpwq-gh') . '</span>'
+		'desc'    => __('Uncheck these if you want to load them your own way.','wpwq-jquiacc') . '<br>'
+			. '<span class="font-initial">' . sprintf(__('If your Theme or Childtheme has a folder "%s" with file "%s" it will be enqueued at last.','wpwq-gh'), 'wpwq', 'wpwqgh_style.css') . '</span>'
 		,
 		'id'      => $type_name . '_' . 'enqueue_jscss',
 		'type'    => 'multicheck',
@@ -164,9 +168,8 @@ class Wpwq_wrapper_gridhover_single extends Wpwq_wrapper_single {
 
 
 		$styles = range(1, 5);
-		if ( ! is_numeric($style) ) {
-			$styles = array_intersect( $styles, explode(',',$style) );
-		}		
+		
+		$styles = array_intersect( $styles, explode(',',$style) );
 		
 		switch ($style_order) {
 			case 'asc':
@@ -183,20 +186,29 @@ class Wpwq_wrapper_gridhover_single extends Wpwq_wrapper_single {
 				$style = $styles[array_rand( $styles )];
 		}
 		
-		
-		$last = $this->args_single['single_count'] % $this->args['per_row'] == 0 ? ' last' : '' ;
 		$r = '';
 		
-		$r .= '<div class="view view-' . $style . $last . '">';
+		$item_classes = array();
+		$item_classes[] = 'wpwq-query-wrapper-item';	// selector for js
+		$item_classes[] = 'post-' . $query_single_obj['id'];	// selector for js
+		$item_classes[] = 'view';
+		$item_classes[] = 'view-' . $style;
+		$item_classes[] = $this->args_single['single_count'] % $this->args['per_row'] == 0 ? 'last' : '' ;
+		$item_classes = array_diff($item_classes, array(''));
+		$item_classes_attr = count($item_classes) > 0 ? ' class="' . implode( ' ', $item_classes ). '"' : '';
 		
-			$r .= $is_linked ? '<a href="' . $query_single_obj['link'] . '" class="info">' : '' ;
-			$r .= '<div class="view-inner">';
+		$r .= '<div ' . $item_classes_attr . '>';
+
+			$target = apply_filters('wpwq_single_obj_link_target', '', $query_single_obj['link']);
+			$r .= $is_linked ? '<a href="' . $query_single_obj['link'] . '" class="info"' . $target . '>' : '' ;
+			$r .= '<div class="view-inner hovertrigger">';		// hovertrigger: selector for js
 			
 				if ( strlen($query_single_obj['image_url']) > 0) {
 					$image_url = $query_single_obj['image_url'];
-
-				} else if ( wpwq_get_option('gridhover_default_img') != null ) {
+				} elseif ( !empty(wpwq_get_option('gridhover_default_imgs')) ) {
 					$image_url = wp_get_attachment_image_src( array_rand( wpwq_get_option('gridhover_default_imgs')), 'thumbnail' )[0];
+				} else {
+					$image_url = '#';	// ???
 				}
 				
 				$r .= '<img src="' . $image_url . '" />';
@@ -355,7 +367,7 @@ class Wpwq_wrapper_gridhover extends Wpwq_wrapper {
 		$per_row = $per_row ? $per_row : min( $this->args['count_total'], '4' );
 		$this->args['per_row'] = $per_row;
 		
-		$unique = ( array_key_exists('unique', $this->args ) && strlen($this->args['unique']) > 0 ? ' ' . wpwq_slugify($this->args['unique']) . '-unique' : '' );
+		$unique = ( array_key_exists('unique', $this->args ) && strlen($this->args['unique']) > 0 ? ' ' . $this->args['unique'] . '-unique' : '' );
 		$this->wrapper_open = '<div class="wpwq-query-wrapper clearfix gridhover' . $unique . ' per-row-' . $per_row . '">';
 
 	}

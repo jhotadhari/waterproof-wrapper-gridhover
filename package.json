@@ -5,7 +5,7 @@
   "uri": "http://waterproof-webdesign.info/waterproof-wrapper-gridhover",
   "textDomain": "wpwq-gh",
   "domainPath": "/languages",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A grid layout wrapper. Uses pure CSS3 effects on hover.",
   "main": "index.js",
   "scripts": {

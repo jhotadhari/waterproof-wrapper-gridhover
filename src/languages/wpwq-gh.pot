@@ -1,0 +1,77 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the waterproof-wrapper-gridhover package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: waterproof-wrapper-gridhover 0.0.3\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-21 14:37+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:14
+msgid ""
+"A grid layout wrapper. Uses pure CSS3 effects on hover.<br>\r\n"
+"\t\t\t\tInspired by that <a title=\"Original Hover Effects with CSS3\" "
+"target=\"_blank\" href=\"https://tympanus.net/codrops/2011/11/02/original-"
+"hover-effects-with-css3/\">Codrops Article</a>, thanks for sharing.<br>\r\n"
+"\t\t\t\tThe First 5 styles are supported currently."
+msgstr ""
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:21
+msgid "Object should be linked?"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:26
+msgid "Choose styles, comma seperated list of numeric ids"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:31
+msgid "\"rand\" or \"asc\"."
+msgstr ""
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:36
+msgid "Maximal number of items per row? max 10"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_add_type_gridhover.php:41
+msgid "Overrides \"per_row_max\". How many itmes per row? max 10"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_gridhover_options.php:27
+msgid "Gridhover Wrapper"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_gridhover_options.php:35
+msgid "Default Images"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_gridhover_options.php:37
+msgid "???"
+msgstr ""
+
+#: src/functions/wpwq_wrapper_gridhover_options.php:51
+msgid "Uncheck these if you want to load them your own way."
+msgstr ""
+
+#: src/functions/wpwq_wrapper_gridhover_options.php:52
+#, php-format
+msgid ""
+"If your Theme or Childtheme has a folder \"%s\" with file \"%s\" it will be "
+"enqueued at last."
+msgstr ""
+
+#: src/plugin_main_file/init.php:44
+#, php-format
+msgid ""
+"\"%s\" plugin requires \"%s\" plugin to be installed and activated and PHP "
+"version greater %s!"
+msgstr ""
