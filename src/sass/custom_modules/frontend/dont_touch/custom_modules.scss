@@ -26,36 +26,53 @@ $_color_bg_light: #e6e6e6;
 $_color_bg_dark: #000;
 $_color_bg_color: rgb( 219, 127, 8);
 
-
-
-
 @for $i from 1 through 10 {
   $gh_layout: layout(95% $i 1/8);  
   @include with-layout($gh_layout) {
     .wpwq-query-wrapper.gridhover.per-row-#{$i} {
       @include container($gh_layout);
-      .view {
-        @include span(1);
-        padding-top: span(1);
-        margin-top: gutters();
-        &.last{
-          @include span(1 last);
+
+      @include breakpoint($device__mobile_portrait) {
+        .view {
+          @include span($i last);
+          padding-top: span($i last);
         }
       }
-      @include breakpoint($device__mobile) {
+      
+      @include breakpoint($device__mobile_landscape) {
         .view {
           @if($i == 1) {
-            @include span($i);
+            @include span($i last);
             padding-top: span($i last);
           } @else {
+            
             @include span($i/2);
             padding-top: span($i/2);
+            
             &:nth-child(2n) {
               @include span($i/2 last);
             }
+            
           }          
         }
       }
+      
+      @include breakpoint($device__tablet) {
+        .view {
+          @include span(1);
+          padding-top: span(1);
+          
+          &.last{
+            @include span(1 last);
+          }
+          
+        }
+      }
+      
+      .view {
+        margin-top: gutters();
+      }
+      
     }
   }
 }

@@ -37,6 +37,9 @@ Upload and install this Plugin in the same way you\'d install any other plugin.
 
 == Changelog ==
 
+= 0.0.4 =
+fix: responsive design
+
 = 0.0.3 =
 bug fix: style attribute didn't accept a single numeric value;
 bug fix: text domain was not loaded;

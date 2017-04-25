@@ -3,7 +3,7 @@
 Plugin Name: Waterproof Wrapper Gridhover
 Plugin URI: http://waterproof-webdesign.info/waterproof-wrapper-gridhover
 Description: A grid layout wrapper. Uses pure CSS3 effects on hover.
-Version: 0.0.3
+Version: 0.0.4
 Author: jhotadhari
 Author URI: http://waterproof-webdesign.info/
 License: GNU General Public License v2
